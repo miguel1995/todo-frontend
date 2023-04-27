@@ -3,16 +3,15 @@
 import React from 'react'
 import { Button, Checkbox, Col, Row, Divider, Form, Input, List, Typography } from 'antd';
 import Task from '../../interfaces/Task';
+import { useToDos } from '../../hooks/useToDos';
 
 
 
-const data:Task[] = [
-    { id:12456, name:"Racing car sprays burning fuel into crowd", state: true },
-    { id:12456, name:"Japanese princess to wed commoner.', 'Australian walks 100km after outback crash", state: true },
-    { id:12456, name:"Man charged over missing wedding girl.', 'Los Angeles battles huge wildfir", state: true }
-    ];
 
 export const Pages = () => {
+
+    const {todoList} = useToDos();
+    console.log(todoList);
 
     const onFinish = (values: any) => {
         console.log('Success:', values);
@@ -64,7 +63,7 @@ export const Pages = () => {
   </Form>
 
 
-    <List header={<div>My Todo List</div>} footer={<div> Fiduoccidente</div>} bordered dataSource={data} renderItem={(item) => (
+    <List header={<div>My Todo List</div>} footer={<div> Fiduoccidente</div>} bordered dataSource={todoList} renderItem={(item) => (
       <List.Item>
         <Checkbox>Remember me</Checkbox>
         <Typography.Text mark>[ITEM]
