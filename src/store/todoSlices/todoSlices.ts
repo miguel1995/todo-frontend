@@ -7,23 +7,38 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
-  todoList: [
-    { id:12456, name:"Racing car sprays burning fuel into crowd", state: true },
-    { id:12456, name:"Japanese princess to wed commoner.', 'Australian walks 100km after outback crash", state: true },
-    { id:12456, name:"Man charged over missing wedding girl.', 'Los Angeles battles huge wildfir", state: true }
-    ]
+  todoList: []
 }
 
 export const counterSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
-    getTodos: (state, action: PayloadAction<Task[]>) => {
+    onGetTask: (state, action: PayloadAction<Task[]>) => {
       state.todoList = action.payload
     },
+    onCreateTask: (state, action: PayloadAction<Task>) => {
+        state.todoList.push(action.payload);
+      },
+    onCheckTask: (state, action: PayloadAction<Task>) => {
+        
+        state.todoList = state.todoList.map((item:Task)=>{
+
+            if(item.id===action.payload.id){
+                item.state=item.state!;
+            }
+
+            return item;
+        })
+
+        
+      },
+
+
+      
   },
 })
 
-export const {  getTodos } = counterSlice.actions
+export const {  onGetTask, onCreateTask, onCheckTask } = counterSlice.actions
 
 export default counterSlice.reducer

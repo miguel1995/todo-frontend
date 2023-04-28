@@ -1,26 +1,62 @@
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Checkbox, Col, Row, Divider, Form, Input, List, Typography } from 'antd';
 import Task from '../../interfaces/Task';
 import { useToDos } from '../../hooks/useToDos';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 
 
 
 export const Pages = () => {
 
-    const {todoList} = useToDos();
+    const {todoList, createTodo, getToDos, checkToDoList} = useToDos();
     console.log(todoList);
+
+
+    useEffect(() => {
+       getToDos();
+    }, [])
+    
+
+    const onChange = (task:Task) => {
+        
+        
+        //setChecked(e.target.checked);
+        checkToDoList(task);
+
+
+      };
+    const handleClick = (item:Task) => {
+        console.log('item = ', item);
+        //setChecked(e.target.checked);
+        //updateToDo();
+
+
+      };
+
+    
 
     const onFinish = (values: any) => {
         console.log('Success:', values);
         //TODO: Llamar al servicio de create Task del backend
+    
+
+        let taskTemp:Task = {
+            id:111111, 
+            name: values.username,
+            state: false
+        }
+
+        
+        createTodo(taskTemp);    
+
       };
       
       const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
-      };
+        };
 
   
   
@@ -64,17 +100,13 @@ export const Pages = () => {
 
 
     <List header={<div>My Todo List</div>} footer={<div> Fiduoccidente</div>} bordered dataSource={todoList} renderItem={(item) => (
-      <List.Item>
-        <Checkbox>Remember me</Checkbox>
-        <Typography.Text mark>[ITEM]
-        </Typography.Text>
-        {item.name}
+      <List.Item >
+        <Checkbox  checked={item.state} onChange={ ()=>onChange(item) } ></Checkbox> {item.name}
       </List.Item>)} />
 
 
-
-
   </>
+
 
 
     
