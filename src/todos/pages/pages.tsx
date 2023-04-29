@@ -21,30 +21,21 @@ export const Pages = () => {
     
 
     const onChange = (task:Task) => {
-        
-        
+         
         //setChecked(e.target.checked);
         checkToDoList(task);
 
 
       };
-    const handleClick = (item:Task) => {
-        console.log('item = ', item);
-        //setChecked(e.target.checked);
-        //updateToDo();
-
-
-      };
-
-    
 
     const onFinish = (values: any) => {
         console.log('Success:', values);
         //TODO: Llamar al servicio de create Task del backend
     
-
+        
+        //TODO: id provisional mientras que se termina el 
         let taskTemp:Task = {
-            id:111111, 
+            id:Math.floor(Date.now() / 1000), 
             name: values.username,
             state: false
         }

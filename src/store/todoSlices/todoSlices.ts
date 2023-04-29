@@ -25,9 +25,9 @@ export const counterSlice = createSlice({
         state.todoList = state.todoList.map((item:Task)=>{
 
             if(item.id===action.payload.id){
-                item.state=item.state!;
+                item.state=!item.state;
             }
-
+            
             return item;
         })
 
@@ -35,7 +35,7 @@ export const counterSlice = createSlice({
       },
 
 
-      
+
   },
 })
 
