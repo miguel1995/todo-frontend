@@ -32,7 +32,7 @@ export const Pages = () => {
         console.log('Success:', values);
         //TODO: Llamar al servicio de create Task del backend
     
-        
+
         //TODO: id provisional mientras que se termina el 
         let taskTemp:Task = {
             id:Math.floor(Date.now() / 1000), 
@@ -94,7 +94,6 @@ export const Pages = () => {
       <List.Item >
         <Checkbox  checked={item.state} onChange={ ()=>onChange(item) } ></Checkbox> {item.name}
       </List.Item>)} />
-
 
   </>
 
